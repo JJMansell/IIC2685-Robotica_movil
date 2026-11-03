@@ -1,0 +1,58 @@
+[0.014s] Invoking command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/jj_laptop_linux/ros2_ws/src/lab2 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2
+[0.152s] -- The C compiler identification is GNU 11.4.0
+[0.437s] -- The CXX compiler identification is GNU 11.4.0
+[0.606s] -- Detecting C compiler ABI info
+[0.689s] -- Detecting C compiler ABI info - done
+[0.694s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.695s] -- Detecting C compile features
+[0.696s] -- Detecting C compile features - done
+[0.699s] -- Detecting CXX compiler ABI info
+[0.784s] -- Detecting CXX compiler ABI info - done
+[0.789s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.789s] -- Detecting CXX compile features
+[0.790s] -- Detecting CXX compile features - done
+[0.798s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.899s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.949s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.976s] -- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.037s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.037s] -- Configured cppcheck include dirs: 
+[1.037s] -- Configured cppcheck exclude dirs and/or files: 
+[1.038s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.039s] -- Added test 'lint_cmake' to check CMake code style
+[1.040s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[1.043s] -- Added test 'uncrustify' to check C / C++ code style
+[1.043s] -- Configured uncrustify additional arguments: 
+[1.044s] -- Added test 'xmllint' to check XML markup files
+[1.045s] -- Configuring done
+[1.047s] -- Generating done
+[1.048s] -- Build files have been written to: /home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2
+[1.051s] Invoked command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/jj_laptop_linux/ros2_ws/src/lab2 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2
+[1.052s] Invoking command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2 -- -j16 -l16
+[1.073s] Invoked command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2 -- -j16 -l16
+[1.079s] Invoking command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2
+[1.082s] -- Install configuration: ""
+[1.083s] -- Execute custom install script
+[1.083s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2//dead_reckoning_nav_v2.py
+[1.088s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2//pose_loader_v2.py
+[1.092s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2//pi_controller.py
+[1.097s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2//pi_controller_rot.py
+[1.102s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2//launch/actividad_1_launcher.xml
+[1.107s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2//launch/actividad_1_launcher_pi.xml
+[1.113s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2//routes/poses_self_ref_square.txt
+[1.119s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/ament_index/resource_index/package_run_dependencies/lab2
+[1.124s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/ament_index/resource_index/parent_prefix_path/lab2
+[1.129s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/environment/ament_prefix_path.sh
+[1.134s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/environment/ament_prefix_path.dsv
+[1.139s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/environment/path.sh
+[1.143s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/environment/path.dsv
+[1.148s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/local_setup.bash
+[1.153s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/local_setup.sh
+[1.158s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/local_setup.zsh
+[1.163s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/local_setup.dsv
+[1.167s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/package.dsv
+[1.172s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/ament_index/resource_index/packages/lab2
+[1.177s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/cmake/lab2Config.cmake
+[1.182s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/cmake/lab2Config-version.cmake
+[1.186s] -- Symlinking: /home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2/share/lab2/package.xml
+[1.192s] Invoked command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2

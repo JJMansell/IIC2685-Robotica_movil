@@ -1,0 +1,11 @@
+<launch>
+
+  <include file="$(find-pkg-share very_simple_robot_simulator)/launch/run_all.xml" />
+  <node pkg="lab2" exec="dead_reckoning_nav_v2.py" name="dead_reckining_navegator" />
+  <ros_timer period="2.0">
+    <node pkg="lab2" exec="pose_loader_v2.py" name="pose_loader" args="3_square.txt" />
+  </ros_timer>
+  <node pkg="lab2" exec="pi_controller.py" name="linear_controller" />
+  <node pkg="lab2" exec="pi_controller_rot.py" name="rotational_controller" />
+
+</launch>

@@ -1,0 +1,6 @@
+Invoking command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/jj_laptop_linux/ros2_ws/src/lab2 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2
+Invoked command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/jj_laptop_linux/ros2_ws/src/lab2 -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/jj_laptop_linux/ros2_ws/src/lab2/install/lab2
+Invoking command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2 -- -j16 -l16
+Invoked command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2 -- -j16 -l16
+Invoking command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2
+Invoked command in '/home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/jj_laptop_linux/ros2_ws/src/lab2/build/lab2
