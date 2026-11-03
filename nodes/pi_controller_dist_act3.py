@@ -14,7 +14,7 @@ class PIDController( Node ):
     self.kp = kp
     self.ki = ki
     self.kd = kd
-    self.setpoint = 0.15
+    self.setpoint = 1
     self.state = None
     self.prev_state = None
     self.prev_time = time.time()
