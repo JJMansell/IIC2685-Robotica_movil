@@ -12,15 +12,14 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 install( PROGRAMS
-	nodes/dead_reckoning_nav_v2.py
-	nodes/pose_loader_v2.py
-	nodes/pi_controller.py
-	nodes/pi_controller_rot.py
+	nodes/seguidor_de_objeto_v2.py
+	nodes/detector_de_objeto_v2.py
+	nodes/pi_controller_dist_act3.py
+	nodes/pi_controller_rot_act3.py
 	DESTINATION lib/${PROJECT_NAME}/ )
 
 install( DIRECTORY
 	launch
-	routes
 	DESTINATION share/${PROJECT_NAME}/ )
 
 

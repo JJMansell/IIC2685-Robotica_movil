@@ -7,6 +7,8 @@ from std_msgs.msg import Float64
 from std_msgs.msg import Empty
 from geometry_msgs.msg import Twist
 
+DISTSETPOINT = 1.0
+
 class PIDController( Node ):
 
   def __init__( self, kp, ki = 0, kd = 0 ):
@@ -14,7 +16,7 @@ class PIDController( Node ):
     self.kp = kp
     self.ki = ki
     self.kd = kd
-    self.setpoint = 1
+    self.setpoint = DISTSETPOINT
     self.state = None
     self.prev_state = None
     self.prev_time = time.time()
@@ -23,7 +25,7 @@ class PIDController( Node ):
 
     self.actuation_pub = self.create_publisher( Twist, '/commands/velocity', 1 )
     # self.dist_set_point_sub = self.create_subscription( Float64, 'setpoint_rotational', self.setpoint_cb, 1 )
-    self.rot_state_sub = self.create_subscription( Float64, 'dist_state', self.state_cb, 1 )
+    self.dist_state_sub = self.create_subscription( Float64, 'dist_state', self.state_cb, 1 )
 
   # def setpoint_cb( self, msg ):
   #   self.get_logger().info( '[PICTRL] new setpoint received: %.2f' % (msg.data) )

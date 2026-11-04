@@ -7,6 +7,9 @@ from std_msgs.msg import Float64
 from std_msgs.msg import Empty
 from geometry_msgs.msg import Twist
 
+# Parametros
+IGNORE_VALUE = 100000.0
+
 class PIDController( Node ):
 
   def __init__( self, kp, ki = 0, kd = 0 ):
@@ -31,7 +34,7 @@ class PIDController( Node ):
   #   self.setpoint = msg.data
 
   def state_cb( self, msg ):
-    if self.setpoint == None:
+    if self.setpoint == None or IGNORE_VALUE:
       return
     self.prev_state = self.state
     self.state = msg.data

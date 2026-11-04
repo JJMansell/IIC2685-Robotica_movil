@@ -17,6 +17,10 @@ from geometry_msgs.msg import Vector3
 
 # Parametros
 
+LOWERBLUE = np.array([100, 100, 100])
+UPPERBLUE = np.array([140, 255, 255])
+ACTIVATE_DISPLAY = False
+
 # class SpeedCommand(NamedTuple):
 #     linear: float
 #     angular: float
@@ -41,7 +45,6 @@ class DetectorDeObjeto(Node):
         # self.current_cv_depth_image = None
 
     def rgb_img_cb(self, img_data):
-        self.current_cv_rgb_image = self.bridge.imgmsg_to_cv2(img_data)
 
         def extract_x_pos( cv_img ):
             '''
@@ -50,11 +53,10 @@ class DetectorDeObjeto(Node):
             Revisar color picker
             Enviar como mensaje ros
             '''
-            hsv_img = cv2.cvtColor(cv_img, cv2.COLOR_BGR2HSV)
-            lower_blue = np.array([100, 50, 50])
-            upper_blue = np.array([140, 255, 255])
-            mask = cv2.inRange(hsv_img, lower_blue, upper_blue)
-            kernel = np.ones((8,8),np.uint8)
+            # hsv_img = cv2.cvtColor(cv_img, cv2.COLOR_BGR2HSV)
+            hsv_img = cv2.cvtColor(cv_img, cv2.COLOR_RGB2HSV)
+            mask = cv2.inRange(hsv_img, LOWERBLUE, UPPERBLUE)
+            kernel = np.ones((16,16),np.uint8)
             opening = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel) # Limpia ruido
             result = cv2.bitwise_and(cv_img, cv_img, mask=opening)
 
@@ -77,16 +79,19 @@ class DetectorDeObjeto(Node):
             # print(center_of_square)
 
             # Para testear
-                cv2.imshow('Original Image', cv_img)
-                cv2.imshow('Blue Mask', opening)
-                cv2.imshow('Extracted Object', result)
-                cv2.waitKey(0)
-                cv2.destroyAllWindows()
-                contour_img_msg = Image()
-                contour_img_msg.height = opening.shape[0]
-                contour_img_msg.width = opening.shape[1]
-                contour_img_msg.data = self.bridge.cv2_to_imgmsg(opening)
-                self.contour_img_publisher.publish(contour_img_msg)
+                if ACTIVATE_DISPLAY:
+                    cv2.imshow('Original Image', cv_img)
+                    cv2.imshow('Blue Mask', opening)
+                    cv2.imshow('Extracted Object', result)
+                    cv2.waitKey(0)
+                    cv2.destroyAllWindows()
+                # contour_img_msg = Image()
+                # contour_img_msg.height = opening.shape[0]
+                # contour_img_msg.width = opening.shape[1]
+                # contour_img_msg = self.bridge.cv2_to_imgmsg(opening)
+                # self.get_logger().info( f"Type opening: {opening}" )
+                # self.get_logger().info( f"Type de self.bridge: {contour_img_msg.data}" )
+                # self.contour_img_publisher.publish(contour_img_msg)
 
                 return x, y
 
@@ -94,16 +99,26 @@ class DetectorDeObjeto(Node):
                 return (None, None)
 
         def send_coordinates(x, y, img_width):
-            msg = Vector3
+            msg = Vector3()
             msg.x = float(x)
             msg.y = float(y)   
             msg.z = float(img_width)
             self.sqr_pos_publisher.publish(msg)
 
-        img_width = self.current_cv_rgb_image.shape[1]
-        x_pos, y_pos, img_width = extract_x_pos(self.current_cv_rgb_image)
-        x_relative_to_center = (img_width/2) - x_pos # Positivo a la izquierda
-        send_coordinates(x_relative_to_center, y_pos, img_width)
+        # self.current_cv_rgb_image = self.bridge.imgmsg_to_cv2(img_data)
+        # self.current_cv_rgb_image = self.bridge.imgmsg_to_cv2(img_data, 'rgb8')
+        image_encoding = img_data.encoding
+        # self.get_logger().info( f"image encoding is: {image_encoding}" )
+        self.current_cv_rgb_image = self.bridge.imgmsg_to_cv2(img_data, image_encoding)
+        if len(self.current_cv_rgb_image) != None or 0:
+            if len(self.current_cv_rgb_image.shape[:]) == 3 :
+                img_width = self.current_cv_rgb_image.shape[1]
+                x_pos, y_pos = extract_x_pos(self.current_cv_rgb_image)
+                if x_pos != None:
+                    x_relative_to_center = (img_width/2) - x_pos # Positivo a la izquierda
+                    send_coordinates(x_relative_to_center, y_pos, img_width)
+        else:
+            self.get_logger().info( f"No image received" )
 
     # def depth_img_cb(self, img_data)  
     #     self.current_cv_depth_image = self.bridge.imgmsg_to_cv2(img_data)
