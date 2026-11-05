@@ -7,7 +7,7 @@ from std_msgs.msg import Float64
 from std_msgs.msg import Empty
 from geometry_msgs.msg import Twist
 
-DISTSETPOINT = 1.0
+DIST_SET_POINT = 1000.0
 
 class PIDController( Node ):
 
@@ -16,7 +16,7 @@ class PIDController( Node ):
     self.kp = kp
     self.ki = ki
     self.kd = kd
-    self.setpoint = DISTSETPOINT
+    self.setpoint = DIST_SET_POINT
     self.state = None
     self.prev_state = None
     self.prev_time = time.time()
@@ -33,10 +33,12 @@ class PIDController( Node ):
   #   self.setpoint = msg.data
 
   def state_cb( self, msg ):
-    if self.setpoint == None:
-      return
     self.prev_state = self.state
     self.state = msg.data
+    self.get_logger().info( f"linear state value: {self.state}" ) 
+    if self.state == (None or DIST_SET_POINT):
+      self.get_logger().info( f"entered return" ) 
+      return
     error = self.setpoint - self.state
     current_time = time.time()
     dt = current_time - self.prev_time
@@ -50,16 +52,17 @@ class PIDController( Node ):
     i_actuation = self.ki*(self.accumulated_error)
 
     # Derivative 
-    prev_error = ( self.setpoint ) if ( self.prev_state == None ) else ( self.setpoint - self.prev_state )    
-    d_actuation = self.kd*( error - prev_error ) / dt
+    # prev_error = ( self.setpoint ) if ( self.prev_state == None ) else ( self.setpoint - self.prev_state )    
+    # d_actuation = self.kd*( error - prev_error ) / dt
     #                (error_{k+1} - error_{k}) / time_delta
 
     # Actuation
-    actuation = p_actuation + i_actuation + d_actuation
+    actuation = p_actuation + i_actuation #+ d_actuation
 
     # Message sending
     msg = Twist()
     msg.linear.x = actuation
+    self.get_logger().info( f"actuation: {actuation}" ) 
     self.actuation_pub.publish( msg )
 
   def reset( self ):

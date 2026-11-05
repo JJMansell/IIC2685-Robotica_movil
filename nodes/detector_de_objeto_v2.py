@@ -19,7 +19,7 @@ from geometry_msgs.msg import Vector3
 
 LOWERBLUE = np.array([100, 100, 100])
 UPPERBLUE = np.array([140, 255, 255])
-ACTIVATE_DISPLAY = False
+ACTIVATE_DISPLAY = True
 
 # class SpeedCommand(NamedTuple):
 #     linear: float
@@ -93,7 +93,7 @@ class DetectorDeObjeto(Node):
                 # self.get_logger().info( f"Type de self.bridge: {contour_img_msg.data}" )
                 # self.contour_img_publisher.publish(contour_img_msg)
 
-                return x, y
+                return cx0, cy0
 
             else:
                 return (None, None)
@@ -104,6 +104,7 @@ class DetectorDeObjeto(Node):
             msg.y = float(y)   
             msg.z = float(img_width)
             self.sqr_pos_publisher.publish(msg)
+            self.get_logger().info( f"msg sent!" )
 
         # self.current_cv_rgb_image = self.bridge.imgmsg_to_cv2(img_data)
         # self.current_cv_rgb_image = self.bridge.imgmsg_to_cv2(img_data, 'rgb8')
@@ -114,8 +115,11 @@ class DetectorDeObjeto(Node):
             if len(self.current_cv_rgb_image.shape[:]) == 3 :
                 img_width = self.current_cv_rgb_image.shape[1]
                 x_pos, y_pos = extract_x_pos(self.current_cv_rgb_image)
+                self.get_logger().info( f"square x coordinate: {x_pos}" )
+                self.get_logger().info( f"square y coordinate: {y_pos}" )
                 if x_pos != None:
-                    x_relative_to_center = (img_width/2) - x_pos # Positivo a la izquierda
+                    x_relative_to_center = float((img_width/2) - x_pos) # Positivo a la izquierda
+                    self.get_logger().info( f"x_relative_to_center: {x_relative_to_center}" )
                     send_coordinates(x_relative_to_center, y_pos, img_width)
         else:
             self.get_logger().info( f"No image received" )
