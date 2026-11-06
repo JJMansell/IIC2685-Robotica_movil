@@ -76,7 +76,7 @@ class SeguidorDeObjeto(Node):
 
             # Enviar error de rotacion y distancia al objeto
             msg_pi = Vector3()
-            msg_pi.x = self.relative_x
+            msg_pi.x = -self.relative_x
             msg_pi.z = square_depth
             self.state_publisher.publish(msg_pi)
 

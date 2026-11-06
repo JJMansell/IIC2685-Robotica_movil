@@ -19,7 +19,7 @@ from geometry_msgs.msg import Vector3
 
 LOWERBLUE = np.array([100, 100, 100])
 UPPERBLUE = np.array([140, 255, 255])
-ACTIVATE_DISPLAY = True
+ACTIVATE_DISPLAY = False
 
 # class SpeedCommand(NamedTuple):
 #     linear: float

@@ -14,15 +14,8 @@ find_package(ament_cmake REQUIRED)
 install( PROGRAMS
 	nodes/seguidor_de_objeto_v2.py
 	nodes/detector_de_objeto_v2.py
-	nodes/pi_controller_dist_act3.py
 	nodes/pi_controller_rot_act3.py
-        nodes/navigator.py
-        nodes/path_loader.py
-        nodes/seguidor_de_objeto.py
-	nodes/pose_loader.py
-	nodes/follow_the_carrot.py
-	nodes/pid.py
-	DESTINATION lib/${PROJECT_NAME}/ )
+        DESTINATION lib/${PROJECT_NAME}/ )
 
 install( DIRECTORY
 	launch

@@ -11,6 +11,7 @@ from geometry_msgs.msg import Vector3
 # Parametros
 IGNORE_VALUE = 100000.0
 LINEAL_VEL = 0.2
+MAX_VEL_ANG = 0.5
 ERROR_BOUNDRY = 10
 
 class PIDController( Node ):
@@ -66,13 +67,16 @@ class PIDController( Node ):
 
         # Message sending
         msg = Twist()
+
+        actuation = max(min(actuation,MAX_VEL_ANG), -MAX_VEL_ANG)
+
         msg.angular.z = actuation
         self.get_logger().info( f"rotary actuation: {actuation}" )
         self.get_logger().info( f"rotary error: {error}" )
 
         if (self.z_state > 500.0) and (-ERROR_BOUNDRY <= error <= ERROR_BOUNDRY):
             msg.linear.x = LINEAL_VEL
-            self.get_logger().info( f"linear actuation ON (0.2)" ) 
+            self.get_logger().info( f"linear actuation ON ({LINEAL_VEL})" ) 
         else:
             self.get_logger().info( f"linear actuation OFF" ) 
 
@@ -85,7 +89,7 @@ class PIDController( Node ):
 
 def main():
     rclpy.init()
-    p_ctrl = PIDController( 0.05, 0.005, 0 )
+    p_ctrl = PIDController( 0.05, 0.001, 0.0 )
     rclpy.spin( p_ctrl )
 
 if __name__ == '__main__':

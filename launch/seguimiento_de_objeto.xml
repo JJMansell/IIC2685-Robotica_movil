@@ -2,5 +2,4 @@
     <node pkg="lab2" exec="detector_de_objeto_v2.py" name="detector" />
     <node pkg="lab2" exec="seguidor_de_objeto_v2.py" name="seguidor" />
     <node pkg="lab2" exec="pi_controller_rot_act3.py" name="controller_rot" />
-    <node pkg="lab2" exec="pi_controller_dist_act3.py" name="controller_dist" />
 </launch>
